@@ -19,18 +19,20 @@ This document converts prior strategy notes into a single execution sequence wit
 ## 1) Architecture Decision Gate (Do This First)
 
 ### Hardware/Software Platform Choice
-- [ ] Choose one control architecture:
-	- [ ] **Path A**: Jetson Nano + ROS1 DOFBOT stack + bridge to ROS2 modules.
-	- [ ] **Path B**: Jetson Nano + custom ROS2 node wrapping Yahboom Python servo API.
-	- [ ] **Path C**: Move to Orin Nano (or alternate modern compute board) for full current ROS2 support.
-- [ ] Record rationale and tradeoffs in `README.md`.
+- [ ] Fix baseline platform: **Jetson Nano + Hiwonder MasterPi** as the primary mobile-manipulator stack.
+- [ ] Add hardware reference in docs: `https://www.hiwonder.com/products/masterpi`.
+- [ ] Select integration mode on Jetson Nano:
+	- [ ] **Mode A**: Use vendor-provided software stack directly for arm/base control.
+	- [ ] **Mode B**: Wrap vendor control APIs in your own ROS node interfaces for a cleaner project architecture.
+	- [ ] **Mode C**: Hybrid approach (vendor low-level control + custom high-level task/state orchestration).
+- [ ] Record final integration rationale and tradeoffs in `README.md`.
 
 ### Constraints Validation
 - [ ] Confirm power budget for base + arm (arm supply, drivetrain supply, grounding strategy).
 - [ ] Confirm mechanical mounting feasibility (rigid adapter, center-of-gravity shift tolerance).
 - [ ] Confirm camera/sensor pipeline for grasp trigger (AprilTag, color cue, or equivalent).
 
-**Exit criteria:** one selected architecture, with power and mounting constraints accepted.
+**Exit criteria:** Jetson Nano + MasterPi baseline is confirmed, with one integration mode selected and constraints accepted.
 
 ---
 
@@ -82,7 +84,7 @@ This document converts prior strategy notes into a single execution sequence wit
 - [ ] Re-test traction and turning with arm payload.
 
 ### Arm Control Integration
-- [ ] Implement arm driver interface (ROS1 package, ROS2 wrapper, or bridge-based control per chosen path).
+- [ ] Implement arm driver interface using MasterPi-compatible control APIs/libraries per selected integration mode.
 - [ ] Define grasp primitives: pre-grasp, approach, close, lift, hold, release.
 - [ ] Add safety limits (joint range, velocity caps, emergency stop).
 
@@ -181,7 +183,7 @@ This document converts prior strategy notes into a single execution sequence wit
 
 ## Immediate Next Actions (This Week)
 
-- [ ] Finalize architecture path (A, B, or C).
+- [ ] Finalize MasterPi integration mode (A, B, or C) on Jetson Nano.
 - [ ] Consolidate legacy `.ino` files into one canonical control codebase.
 - [ ] Add sensor read timeout and failsafe handling.
 - [ ] Implement initial compound state machine skeleton.
