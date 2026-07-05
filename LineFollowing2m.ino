@@ -13,6 +13,8 @@ int sensorPin = 3;
 int sensorPin1 = 6;
 int sensorPin2 = 7;
 int qti[3];
+bool rcTimeoutFault = false;
+const long RC_TIMEOUT_COUNT = 3000;
 
 int n = 0;
 int n1 = 0;
@@ -38,6 +40,7 @@ void setup()
 void loop()
 {
    meetAndroid.receive();
+  rcTimeoutFault = false;
   //Serial.println(threshold);
   time = micros() - tinit;
   if (RCtime(sensorPin)>= threshold){
@@ -52,6 +55,13 @@ void loop()
     qti[2] = 1;}
     else{
     qti[2]=0;}
+
+  if (rcTimeoutFault) {
+    servoLeft.writeMicroseconds(1500);
+    servoRight.writeMicroseconds(1500);
+    delayMicroseconds(40);
+    return;
+  }
 
   n = random(0,500);
   n1 = random(0,500);
@@ -111,8 +121,12 @@ long RCtime(int sensPin){
   
   pinMode(sensPin, INPUT);
   digitalWrite(sensPin, LOW);
-  while(digitalRead(sensPin)){
+  while(digitalRead(sensPin) && result < RC_TIMEOUT_COUNT){
     result++;
+  }
+
+  if (result >= RC_TIMEOUT_COUNT) {
+    rcTimeoutFault = true;
   }
   
   return result;

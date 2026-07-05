@@ -1,0 +1,1 @@
+timestamp,run_id,phase,state,event,line_error_px,heading_error_deg,speed_cmd,grasp_attempt,grasp_success,trigger_latency_ms,phase_duration_ms,total_duration_ms,stop_event,notes

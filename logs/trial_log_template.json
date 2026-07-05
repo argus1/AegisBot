@@ -1,0 +1,28 @@
+{
+  "run_id": "RUN_0001",
+  "date": "2026-07-05",
+  "hardware": {
+    "compute": "Jetson Nano",
+    "platform": "MasterPi"
+  },
+  "result": {
+    "completed": false,
+    "grasp_success": false,
+    "failure_reason": ""
+  },
+  "metrics": {
+    "line_error_mean_px": 0.0,
+    "line_error_max_px": 0.0,
+    "trigger_latency_ms": 0,
+    "grasp_time_ms": 0,
+    "total_time_ms": 0
+  },
+  "events": [
+    {
+      "timestamp": "",
+      "state": "LineFollow",
+      "event": ""
+    }
+  ],
+  "notes": ""
+}
