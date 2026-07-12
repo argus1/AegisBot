@@ -22,4 +22,4 @@ Selected mode: **Mode C (Hybrid)** from `Dev_Plan.md`.
 - **Mode A (vendor-only):** Rejected because experiment-specific behavior and logging would be harder to evolve cleanly.
 - **Mode B (fully custom wrapper):** Rejected for Week-1 because it increases implementation risk before hardware stabilization.
 
-![ShieldBot](https://github.com/argus1/ShieldBotBTFlag/blob/master/Prototype-of-embedded-navigation-system-guided-robot_W640.jpg?raw=true)
+![AegisBot](https://github.com/argus1/AegisBot/blob/master/Mobilemanip.gif?raw=true)
